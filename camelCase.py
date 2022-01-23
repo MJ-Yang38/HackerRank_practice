@@ -19,26 +19,56 @@ def camelCase(str1):
                 newstr+=str1[i]
             else: 
                 newstr+=' '+str1[i]
-        #return newstr.lower()
+        return newstr.lower()
     elif str1[0]=="C" and str1[2]=="V":
-        
+        space_ind=0
         for i in range(4,len(str1)):
-            
             if str1[i]==' ':
-                newstr+=str1[i+1].upper()
-                break   
-            else:
-                for j in range(i+1,len(str1)):
-                    newstr+=str1[j]           
-        #return newstr
+                space_ind=i
+                for j in range(4,space_ind):
+                    newstr+=str1[j]
+                for k in range(space_ind+1,space_ind+2):
+                    newstr+=str1[k].upper()
+                for h in range(space_ind+2,len(str1)):
+                    newstr+=str1[h]
+        return newstr
     elif str1[0]=="C" and str1[2]=="C":
         newstr+=str1[4].upper()
+        space_ind=0
         for i in range(5,len(str1)):
             if str1[i]==' ':
-                newstr+=str1[i+1].upper()
-                break
+                space_ind=i
+                for j in range(5,space_ind):
+                    newstr+=str1[j]
+                for k in range(space_ind+1,space_ind+2):
+                    newstr+=str1[k].upper()
+                for h in range(space_ind+2,len(str1)):
+                    newstr+=str1[h]
+        return newstr
+    elif str1[0]=="S" and str1[2]=="C":
+        for i in range(4,len(str1)):
+            if str1[i].isupper() and i!=4:
+                newstr+=' '+str1[i].lower()
+            elif i==4:
+                newstr+=str1[i].lower()
             else:
                 newstr+=str1[i]
         return newstr
-str1="C;C;coffee machine"
+    elif str1[0]=="C" and str1[2]=="M":
+        str2=str1[4:].title()
+        for i in range(0,len(str2)):
+            if str2[i]==' ':
+                newstr+=str2[i].rstrip()
+            else:
+                newstr+=str2[i]
+                
+        return newstr+'()'
+    elif str1[0]=="S" and str1[2]=="V":
+        for i in range(4,len(str1)):
+            if str1[i].isupper() and i!=4:
+                newstr+=' '+str1[i].lower()
+            else:
+                newstr+=str1[i]
+        return newstr
+str1="S;V;pictureFrame"
 print(camelCase(str1))
